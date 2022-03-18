@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block page_title %}
-    Blog
+    {{post.title}} | Post
 {% endblock page_title %}
-    
 
 {% block content %}
-    Blog Index
+    <h1>{{post.title}}</h1>
+
+    <p>{{post.content}}</p>
 {% endblock content %}
     

@@ -2,7 +2,7 @@ from django.db import models
 from core import models as core_models
 
 
-class Blog(core_models.AbstractModel):
+class Post(core_models.AbstractModel):
 
     """Post Model"""
 

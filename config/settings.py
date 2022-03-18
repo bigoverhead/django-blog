@@ -41,7 +41,7 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     "core.apps.CoreConfig",
-    "blogs.apps.BlogsConfig",
+    "posts.apps.PostsConfig",
     "single_pages.apps.SinglePagesConfig",
 ]
 
