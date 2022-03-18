@@ -1,16 +1,16 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from . import models
 
 
-def index(request):
+class PostList(ListView):
 
-    posts = models.Post.objects.all().order_by("-pk")
+    model = models.Post
+    context_object_name = "posts"
+    template_name = "posts/post_list.html"
 
-    return render(request, "posts/index.html", context={"posts": posts})
 
+class PostDetail(DetailView):
 
-def detail(request, pk):
-
-    post = models.Post.objects.get(pk=pk)
-
-    return render(request, "posts/detail.html", {"post": post})
+    model = models.Post
+    context_object_name = "post"
+    template_name = "posts/post_detail.html"
