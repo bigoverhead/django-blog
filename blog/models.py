@@ -3,6 +3,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Tag(models.Model):
+
+    name = models.CharField(max_length=20)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return f"/blog/tag/{self.tag}/"
+
+
 class Category(models.Model):
 
     name = models.CharField(max_length=20, unique=True)
@@ -15,7 +27,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f"/blog/category/{self.slug}"
+        return f"/blog/category/{self.slug}/"
 
 
 class Post(models.Model):
@@ -39,8 +51,14 @@ class Post(models.Model):
         User, related_name="posts", on_delete=models.SET_NULL, null=True
     )
     category = models.ForeignKey(
-        Category, related_name="posts", null=True, blank=True, on_delete=models.SET_NULL, default="no-category"
+        Category,
+        related_name="posts",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        default="no-category",
     )
+    tags = models.ManyToManyField(Tag, blank=True)
 
     # methods
     def __str__(self):

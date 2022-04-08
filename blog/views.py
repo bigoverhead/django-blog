@@ -36,3 +36,19 @@ def show_category_posts(request, slug):
     }
 
     return render(request, "blog/post_list.html", context=context)
+
+
+def show_tag_posts(request, slug):
+
+    tag = models.Category.objects.get(slug=slug)
+    post_list = tag.post_set.all()
+
+    context = {
+        "categories": models.Category.objects.all(),
+        "no_category_post_count": models.Post.objects.filter(
+            category="no-category"
+        ).count(),
+        "post_list": post_list,
+    }
+
+    return render(request, "blog/post_list.html", context=context)

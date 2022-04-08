@@ -7,27 +7,27 @@
 {% block main_area %}
     <h1>Blog</h1>
 
-    {% for p in post_list %}
+    {% for post in post_list %}
     <!-- Blog Post -->
     <div class="card mb-4">
-        {% if p.head_image %}
-            <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
+        {% if post.head_image %}
+            <img class="card-img-top" src="{{ post.head_image.url }}" alt="Card image cap">
             {% else %}
-            <img class="card-img-top" src="https://picsum.photos/seed/{{ p.pk }}/800/200" alt="Card image cap">
+            <img class="card-img-top" src="https://picsum.photos/seed/{{ post.pk }}/800/200" alt="Card image cap">
         {% endif %}
 
         <div class="card-body">
-            <h2 class="card-title">{{ p.title }}</h2>
-            {% if p.hook_msg %}
-                <p class="card-text">{{ p.hook_msg }}</p>
+            <h2 class="card-title">{{ post.title }}</h2>
+            {% if post.hook_msg %}
+                <p class="card-text">{{ post.hook_msg }}</p>
             {% else %}
-                <p class="card-text">{{ p.content | truncatewords:30 }}</p>
+                <p class="card-text">{{ post.content | truncatewords:30 }}</p>
             {% endif %}
-            <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
         </div>
         <div class="card-footer text-muted">
-            Posted on {{ p.created_at }} by
-            <a href="#">{{ p.author }}</a>
+            Posted on {{ post.created_at }} by
+            <a href="#">{{ post.author }}</a>
         </div>
     </div>
     {% endfor %}
