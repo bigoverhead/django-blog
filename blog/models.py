@@ -14,6 +14,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f"/blog/category/{self.slug}"
+
 
 class Post(models.Model):
 
@@ -32,7 +35,12 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(
+        User, related_name="posts", on_delete=models.SET_NULL, null=True
+    )
+    category = models.ForeignKey(
+        Category, related_name="posts", null=True, blank=True, on_delete=models.SET_NULL, default="no-category"
+    )
 
     # methods
     def __str__(self):

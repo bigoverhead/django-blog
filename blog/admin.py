@@ -16,4 +16,5 @@ class PostAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "author",
+        "category",
     )
