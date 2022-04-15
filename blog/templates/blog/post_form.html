@@ -5,6 +5,14 @@
 {% endblock title %}
 
 {% block main_area %}
+
+    
+    {% if user.is_authenticated and user == post.author %}
+        
+        <a href="/blog/update_post/{{ post.pk }}"><button class="btn btn-primary float-right">Edit</button></a>
+        
+    {% endif %}
+
     <form method="post" enctype="mulipart/form-data">
         {% csrf_token %}
         <table>
