@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Create Post - blog
+{% endblock title %}
+
+{% block main_area %}
+    <form method="post" enctype="mulipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+        </table>
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+{% endblock main_area %}

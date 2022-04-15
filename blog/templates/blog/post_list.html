@@ -5,7 +5,18 @@
 {% endblock %}
 
 {% block main_area %}
-    <h1>Blog</h1>
+    <div>
+        <h1>Blog</h1>
+
+        {% if user.is_authenticated %}
+            
+            {% if user.is_superuser or user.is_staff %}
+                <a href="/blog/create_post/" role="button">Create Post</a>
+            {% endif %}
+                
+        {% endif %}
+    </div>
+        
 
     {% for post in post_list %}
     <!-- Blog Post -->
