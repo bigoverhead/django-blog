@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from . import models
+from . import forms
 
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
@@ -68,6 +69,15 @@ class PostDetail(DetailView):
 
     model = models.Post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = models.Category.objects.all()
+        context["no_category_post_count"] = models.Post.objects.filter(
+            category=None
+        ).count()
+        context["comment_form"] = forms.CommentForm
+        return context
+
 
 def show_category_posts(request, slug):
 
@@ -99,3 +109,20 @@ def show_tag_posts(request, slug):
     }
 
     return render(request, "blog/post_list.html", context=context)
+
+
+def new_comment(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(models.Post, pk=pk)
+
+        if request.method == "POST":
+            comment_form = forms.CommentForm(request.POST)
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            return redirect(post.get_absolute_url())
+        else:
+            return redirect(post.get_absolute_url())
+    else:
+        raise PermissionError

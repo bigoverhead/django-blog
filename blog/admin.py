@@ -25,3 +25,9 @@ class PostAdmin(MarkdownxModelAdmin):
         "author",
         "category",
     )
+
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+
+    pass
