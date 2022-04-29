@@ -44,8 +44,13 @@ PROJECT_APPS = [
     "single_pages.apps.SinglePagesConfig",
 ]
 
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "markdownx"
+]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -131,3 +136,5 @@ STATIC_URL = "/static/"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "_media")
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

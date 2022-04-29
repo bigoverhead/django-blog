@@ -1,4 +1,5 @@
 from django.contrib import admin
+from markdownx.admin import MarkdownxModelAdmin
 from . import models
 
 
@@ -17,7 +18,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(MarkdownxModelAdmin):
 
     list_display = (
         "title",
