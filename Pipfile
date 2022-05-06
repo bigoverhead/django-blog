@@ -8,6 +8,8 @@ django = "==3.0.6"
 pillow = "*"
 django-crispy-forms = "*"
 django-markdownx = "*"
+waitress = "*"
+whitenoise = "*"
 
 [dev-packages]
 black = "*"

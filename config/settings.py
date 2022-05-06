@@ -25,7 +25,7 @@ SECRET_KEY = "$5rpoe!t$ag&!zd^bd)d=z)g7cm$(t4xw8)05e*d^!(+(wjy@f"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -44,10 +44,7 @@ PROJECT_APPS = [
     "single_pages.apps.SinglePagesConfig",
 ]
 
-THIRD_PARTY_APPS = [
-    "crispy_forms",
-    "markdownx"
-]
+THIRD_PARTY_APPS = ["crispy_forms", "markdownx"]
 
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -60,7 +57,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
+
 
 ROOT_URLCONF = "config.urls"
 
@@ -131,6 +130,8 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # User media files
 
