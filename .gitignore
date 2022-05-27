@@ -136,3 +136,4 @@ migrations/
 
 # User contents
 _media/
+static/

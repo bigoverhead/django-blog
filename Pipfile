@@ -10,6 +10,8 @@ django-crispy-forms = "*"
 django-markdownx = "*"
 waitress = "*"
 whitenoise = "*"
+psycopg2 = "*"
+dj-database-url = "*"
 
 [dev-packages]
 black = "*"
