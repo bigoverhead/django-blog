@@ -94,18 +94,19 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-""" 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
- """
 
+"""
 LOCAL_SQLITE = "sqlite:///" + os.path.abspath(os.path.join(BASE_DIR, "db.sqlite3"))
 DATEBASES = {}
 DATEBASES["default"] = dj_database_url.config(default=LOCAL_SQLITE)
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -154,3 +155,16 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = "/var/vcap/media"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Authentication
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+LOGIN_REDIRECT_URL = "/blog/"
