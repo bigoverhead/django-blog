@@ -45,7 +45,15 @@ PROJECT_APPS = [
     "single_pages.apps.SinglePagesConfig",
 ]
 
-THIRD_PARTY_APPS = ["crispy_forms", "markdownx"]
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "markdownx",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+]
 
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS

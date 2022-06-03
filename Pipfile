@@ -12,6 +12,7 @@ waitress = "*"
 whitenoise = "*"
 psycopg2 = "*"
 dj-database-url = "*"
+django-allauth = "*"
 
 [dev-packages]
 black = "*"
